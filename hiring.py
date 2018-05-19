@@ -26,12 +26,12 @@ def main():
 	secretPIN = '35kTalBneckAe'
 	block_io = inicializarAPI(secretPIN)
 
-	amount = '0.00002'
+	amount = '1.00000000'
 	exampleWallet = '2N2MPfFRUmipSSdFaio23YiYw8eq6SV49qt'
 	testWallet = '2MtSQLgfWpREsDjpax9k71MjiN6GRECuv2P'
 	hiringWallet = 'mnYoahiweETgdXsfY92GCWA6HoRj9knQUw'
 
-	withdraw = send_btc(block_io, amount, exampleWallet, testWallet, secretPIN)
+	withdraw = send_btc(block_io, amount, exampleWallet, hiringWallet, secretPIN)
 
 	print("Status da operacao: ", withdraw['status'])
 	print("Enviado: ", withdraw['data']['amount_sent'])
