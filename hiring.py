@@ -11,28 +11,30 @@ def inicializarAPI(_secretPIN):
 	block_io = BlockIo(bitcointTestnetApiKey, _secretPIN, version)
 	return block_io
 
-def send_btc(_block_io, _secretPIN):
-	exampleWallet = '2N2MPfFRUmipSSdFaio23YiYw8eq6SV49qt'
-	testWallet = '2MtSQLgfWpREsDjpax9k71MjiN6GRECuv2P'
-	hiringWallet = 'mnYoahiweETgdXsfY92GCWA6HoRj9knQUw'
-
+def send_btc(_block_io, _amount, _fromWallet, _toWallet, _secretPIN):
 	try:
 		#envia 1 btc
-		amount = '1.0'
-		withdraw = _block_io.withdraw_from_addresses(amounts=amount, 
-			from_addresses=exampleWallet, to_addresses=hiringWallet, pin=_secretPIN)
+		withdraw = _block_io.withdraw_from_addresses(amounts=_amount, 
+			from_addresses=_fromWallet, to_addresses=_toWallet, pin=_secretPIN)
 
-		print("Status da operacao: ", withdraw['status'])
-		print("Enviado: ", withdraw['data']['amount_sent'])
 	except BlockIoAPIError as error:
 		print(error)
 
-	return
+	return withdraw
 
 def main():
 	secretPIN = '35kTalBneckAe'
 	block_io = inicializarAPI(secretPIN)
-	send_btc(block_io, secretPIN)
+
+	amount = '0.00002'
+	exampleWallet = '2N2MPfFRUmipSSdFaio23YiYw8eq6SV49qt'
+	testWallet = '2MtSQLgfWpREsDjpax9k71MjiN6GRECuv2P'
+	hiringWallet = 'mnYoahiweETgdXsfY92GCWA6HoRj9knQUw'
+
+	withdraw = send_btc(block_io, amount, exampleWallet, testWallet, secretPIN)
+
+	print("Status da operacao: ", withdraw['status'])
+	print("Enviado: ", withdraw['data']['amount_sent'])
 
 	return
 
