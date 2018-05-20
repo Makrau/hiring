@@ -1,5 +1,9 @@
 #!/usr/bin/python3
 
+# para testar foi utilizado o py.test, que pode ser obtido executando o comando:
+# pip install pytest
+# para utilizar o teste basta executar o comando py.test dentro da pasta
+
 from block_io import BlockIo
 import hiring
 
